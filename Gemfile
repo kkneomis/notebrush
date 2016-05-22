@@ -7,7 +7,6 @@ gem 'coffee-rails', '~> 4.0.0'
 gem 'jquery-rails'
 gem 'turbolinks'
 gem 'jbuilder', '~> 1.2'
-gem "mini_magick"
 gem 'devise' 
 gem 'carrierwave' 
 #gem 'elasticsearch-model'
@@ -17,9 +16,10 @@ gem 'will_paginate', '~> 3.0.5'
 gem 'will_paginate-bootstrap'
 #gem 'unicorn'
 #gem 'newrelic_rpm'
-gem 'cloudinary'
 
 gem 'bootstrap-sass', '~> 3.3.4'
+gem 'carrierwave'
+gem 'cloudinary'
 
 
 group :production do

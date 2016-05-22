@@ -1,0 +1,19 @@
+---
+development:
+  cloud_name: dbgxmocga
+  api_key: '368147593637956'
+  api_secret: oiFkSrWRU4G1jlOoMzKOKJewj-M
+  enhance_image_tag: true
+  static_image_support: false
+production:
+  cloud_name: dbgxmocga
+  api_key: '368147593637956'
+  api_secret: oiFkSrWRU4G1jlOoMzKOKJewj-M
+  enhance_image_tag: true
+  static_image_support: true
+test:
+  cloud_name: dbgxmocga
+  api_key: '368147593637956'
+  api_secret: oiFkSrWRU4G1jlOoMzKOKJewj-M
+  enhance_image_tag: true
+  static_image_support: false
