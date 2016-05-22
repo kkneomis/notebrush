@@ -11,31 +11,35 @@
 						<img src="http://res.cloudinary.com/dbgxmocga/image/upload/v1463944131/notebrush_w0svxy.png" width="100px">
 					</a></li>
 							<li class="nav-item has-submenu">
-								<a href="#" class="nav-link ">Home</a>
+								<a href="/" class="nav-link ">Home</a>
 							</li>
 
 							<li class="nav-item has-submenu">
-								<a href="listings.html" class="nav-link ">Browse</a>
-
-								<ul class="submenu">
-									<li><a href="listings.html">Listings Grid</a></li>
-									<li><a href="listings-map.html">Listings Map</a></li>
-									<li><a href="listing-detail.html">Detail Page</a></li>
-								</ul>
+								<a href="/entries" class="nav-link ">Browse</a>
 							</li>
 
 							<li class="nav-item has-submenu">
 								<a href="#" class="nav-link ">About Us</a>
 							</li>
+                            <% if user_signed_in? %>
+                                <li class="nav-item has-submenu">
+                                    <%= link_to 'Add a video', new_entry_path, class:"nav-link" %>
+                                </li>
+                            <% end%>
+                           
 
 						</ul><!-- /.nav -->
 					</div><!-- /.nav-primary-wrapper -->
 
 					<ul class="nav nav-pills secondary">
 						<li class="nav-item user-avatar-wrapper">
-                            <%= image_tag current_user.gravatar_url, class:"nav-link circle user-avatar-image"%>
-							<span class="user-avatar-status"></span>
-
+                            <% if user_signed_in? %>
+                                <%= image_tag current_user.gravatar_url, class:"nav-link circle user-avatar-image"%>
+                                <span class="user-avatar-status"></span>
+                            <% else%>
+                                 <%= image_tag "http://vignette2.wikia.nocookie.net/recipes/images/1/1c/Avatar.svg/revision/latest?cb=20110302033947", class:"nav-link circle user-avatar-image"%>
+                            <% end%>
+							
 							<ul class="header-more-menu">
 								<% if user_signed_in? %>
                                   <li><%= link_to "Sign Out", destroy_user_session_path, method: :delete %></li>

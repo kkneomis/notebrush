@@ -1,33 +1,37 @@
-<h1>Listing entries</h1>
 
-<table>
-  <thead>
-    <tr>
-      <th>Title</th>
-      <th>Description</th>
-      <th>User</th>
-      <th>Tag</th>
-      <th>Reel</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
 
-  <tbody>
-    <% @entries.each do |entry| %>
-      <tr>
-        <td><%= entry.title %></td>
-        <td><%= entry.description %></td>
-        <td><%= entry.user %></td>
-        <td><%= entry.tag %></td>
-        <td><%= image_tag entry.reel.to_s.gsub('.mp4', '.jpg') %></td>
-        <td><%= link_to 'Show', entry %></td>
-        <td><%= link_to 'Edit', edit_entry_path(entry) %></td>
-        <td><%= link_to 'Destroy', entry, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
 
-<br>
 
-<%= link_to 'New Entry', new_entry_path %>
+
+<div class="container">
+	<div class="page-title">
+		<h2>Showing All Videos</h2>
+	</div><!-- /.page-title -->
+
+
+	<div class="row">
+		<div class="col-sm-12 col-xl-10">
+			<div class="cards-wrapper">
+				<div class="row">
+					 <% @entries.each do |entry| %>
+						<div class="col-sm-6 col-md-4">
+							<div class="card">
+                        <%= link_to (image_tag entry.reel.to_s.gsub('.mp4', '.jpg'), class:"card-image", width:"100%"), entry%>
+                        <div class="card-content">
+                            <h3><%= entry.user.email %></h3>
+                            <h2><%= entry.title %></h2>
+                        </div><!-- /.card-content -->
+
+                        <div class="card-actions">
+                            <a href="#" class="card-action-icon"><i class="md-icon">favorite</i></a>
+                            <a href="#" class="card-action-icon"><i class="md-icon">flag</i></a>
+                            <%= link_to "Watch Video", entry, class:"card-action-btn btn btn-transparent" %>
+                        </div><!-- /.card-actions -->
+                    </div><!-- /.card -->
+						</div><!-- /.col-* -->
+					 <% end %>
+				</div><!-- /.row -->
+			</div><!-- /.card-wrapper -->
+		</div><!-- /.col-* -->	
+	</div><!-- /.row -->
+</div><!-- /.container -->
