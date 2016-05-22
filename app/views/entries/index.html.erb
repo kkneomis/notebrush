@@ -19,7 +19,7 @@
         <td><%= entry.description %></td>
         <td><%= entry.user %></td>
         <td><%= entry.tag %></td>
-        <td><%= entry.reel %></td>
+        <td><%= image_tag entry.reel.to_s.gsub('.mp4', '.jpg') %></td>
         <td><%= link_to 'Show', entry %></td>
         <td><%= link_to 'Edit', edit_entry_path(entry) %></td>
         <td><%= link_to 'Destroy', entry, method: :delete, data: { confirm: 'Are you sure?' } %></td>

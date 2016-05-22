@@ -22,7 +22,7 @@
 
 <p>
   <strong>Reel:</strong>
-  <%= @entry.reel %>
+  <%= image_tag @entry.reel.to_s.sub('.mp4', '.jpg') %>
 </p>
 
 <%= link_to 'Edit', edit_entry_path(@entry) %> |
