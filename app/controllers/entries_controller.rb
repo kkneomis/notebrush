@@ -1,5 +1,6 @@
 class EntriesController < ApplicationController
   before_action :set_entry, only: [:show, :edit, :update, :destroy]
+  before_filter :authenticate_user!, only: [:new, :create, :edit, :update, :destroy]
 
   respond_to :html
 
@@ -22,6 +23,7 @@ class EntriesController < ApplicationController
 
   def create
     @entry = Entry.new(entry_params)
+    @entry.user_id = current_user.id
     @entry.save
     respond_with(@entry)
   end
