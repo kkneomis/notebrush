@@ -5,12 +5,24 @@
   <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
   <%= csrf_meta_tags %>
+  <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+
+    <!-- Latest compiled and minified JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
+    
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    
 </head>
 <body>
-<div class="container">
-    <p class="notice"><%= notice %></p>                                                                                                                                         <p class="alert"><%= alert %></p> 
-  <%= yield %>
-</div>
+<%= render '/layouts/header' %>
+    
+    <% if @page == 'home' %>  
+        <%= render '/layouts/slider' %>
+    <% end %>
+    <p class="notice"><%= notice %></p>                                                                                                           <p class="alert"><%= alert %></p> 
+    <%= yield %>
+<%= render '/layouts/footer' %>
   
 </body>
 </html>
