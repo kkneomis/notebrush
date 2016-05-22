@@ -48,19 +48,17 @@
 					</div><!-- /.nav-primary-wrapper -->
 
 					<ul class="nav nav-pills secondary">
-						<li class="nav-item">
-							<a href="#" class="nav-link circle"><i class="md-icon">search</i></a>
-						</li>
-						<li class="nav-item"><a href="submit.html" class="nav-link circle"><i class="md-icon">add</i></a></li>
 						<li class="nav-item user-avatar-wrapper">
 							<a href="#" class="nav-link circle user-avatar-image" style="background-image: url('assets/img/tmp/profile-1.jpg')"></a>
 							<span class="user-avatar-status"></span>
 
 							<ul class="header-more-menu">
-								<li><a href="#">Profile</a></li>
-								<li><a href="#">Password</a></li>
-								<li><a href="#">Submissions</a></li>
-								<li><a href="#">Logout</a></li>
+								<% if user_signed_in? %>
+                                  <li><%= link_to "Sign Out", destroy_user_session_path, method: :delete %></li>
+                                <% else %>
+                                  <li><%= link_to "Login", new_user_session_path %></li>
+                                  <li><%= link_to "Sign Up", new_user_registration_path %></li>
+                                <% end%>
 							</ul>							
 						</li>
 					</ul>

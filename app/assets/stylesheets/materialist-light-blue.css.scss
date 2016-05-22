@@ -4947,7 +4947,15 @@ blockquote {
     margin: 30px 0 0 0; }
 
 .layout-empty {
-  background-color: #404040; }
+ background: linear-gradient(
+      rgba(0, 0, 0, 0.6), 
+      rgba(0, 0, 0, 0.6)
+    ),
+     url(http://res.cloudinary.com/dbgxmocga/image/upload/v1463947451/image_emy3kt.jpg) no-repeat center center fixed; 
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;}
 
 /**
  * 4. Buttons

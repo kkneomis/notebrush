@@ -13,16 +13,11 @@
     
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <script src="https://use.fontawesome.com/2fdd999bc3.js"></script>
-    
 </head>
-<body>
-<%= render '/layouts/header' %>
-    <% if @page == 'home' %>  
-        <%= render '/layouts/slider' %>
-    <% end %>
+<body class="layout-empty">
+    
     <p class="notice"><%= notice %></p>                                                                                                           <p class="alert"><%= alert %></p> 
     <%= yield %>
-<%= render '/layouts/footer' %>
   
 </body>
 </html>
