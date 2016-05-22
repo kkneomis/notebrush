@@ -5,4 +5,7 @@ class User < ActiveRecord::Base
          :recoverable, :rememberable, :trackable, :validatable
 
   has_many :videos
+    
+  include Gravtastic
+  gravtastic
 end
