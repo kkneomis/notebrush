@@ -3,9 +3,10 @@ Rails.application.routes.draw do
   resources :entries
 
   devise_for :users
+    
   root 'pages#home'
 
-  get 'pages/generic'
+    get 'feed' => 'pages#feed'
 
   get 'pages/elements'
 

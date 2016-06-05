@@ -1,0 +1,33 @@
+<div class="container">
+    <div class="row">
+        <div class="col-md-3 col-md-offset-1">
+            <%= image_tag current_user.gravatar_url, class:"" %>
+            <h1><%= @user.username %></h1>
+            <p><%= render 'shared/stats' %></p>
+            <% if current_user.id != @user.id %>
+              <div id="follow_form">
+              <% if current_user.following?(@user) %>
+                <%= render 'unfollow' %>
+              <% else %>
+                <%= render 'follow' %>
+              <% end %>
+              </div>
+            <% end %>
+        </div>
+        <div class="col-md-7">
+        <% @entries.each do |entry| %>
+            <div class="rows">
+                <div class="card" style="padding:40px">
+                    
+                    <%= link_to cl_video_tag( File.basename(URI.parse(entry.reel.to_s).path), :width=>550, :height=>400, :crop=>"scale",:loop => true, :autoplay => false, :poster => false,
+                                :fallback_content => "Your browser does not support HTML5 video tags"), entry %>
+                        <h2><%= entry.title %></h2>
+                        <p><strong>Tags:</strong> <%= entry.tag %></p>
+                </div>
+            </div>
+        <% end %>
+        
+        
+        </div>
+    </div>
+</div>

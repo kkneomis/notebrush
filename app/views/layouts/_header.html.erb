@@ -19,6 +19,10 @@
 							</li>
 
 							<li class="nav-item has-submenu">
+								<a href="/feed" class="nav-link ">Feed</a>
+							</li>
+                            
+                            <li class="nav-item has-submenu">
 								<a href="#" class="nav-link ">About Us</a>
 							</li>
                             <% if user_signed_in? %>
@@ -43,6 +47,7 @@
 							<ul class="header-more-menu">
 								<% if user_signed_in? %>
                                   <li><a href="/users/<%= current_user.id %>">View my profile</a></li>
+                                  <li> <%= link_to "Edit Profile", edit_user_registration_path %></li>
                                   <li><%= link_to "Sign Out", destroy_user_session_path, method: :delete %></li>
                                 <% else %>
                                   <li><%= link_to "Login", new_user_session_path %></li>

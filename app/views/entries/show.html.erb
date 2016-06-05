@@ -7,7 +7,7 @@
             
             <%= cl_video_tag( File.basename(URI.parse(@entry.reel.to_s).path), :width=>550, :height=>400, :crop=>"scale",:loop => true, :autoplay => true, :poster => false,
                     :fallback_content => "Your browser does not support HTML5 video tags") %>
-             <p><%= rating_for @entry %></p>
+            <p> by <%= link_to @entry.user.username, @entry.user%> </p>
             <h2><%= @entry.title %></h2>
             <p><strong>Description:</strong> <%= @entry.description %></p>
             <p><strong>Tags:</strong> <%= @entry.tag %></p>

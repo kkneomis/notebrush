@@ -1,12 +1,8 @@
 
-
-
-<link href='http://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'>
 <div class="container">
-    <div class="fb-profile">
-        <img align="left" class="fb-image-lg" src="http://res.cloudinary.com/dbgxmocga/image/upload/v1464829467/music_dsvbhc.jpg" alt="Profile image example"/>
-        <%= image_tag current_user.gravatar_url, class:"fb-image-profile thumbnail",  align:"left" %>
-        <div class="fb-profile-text">
+    <div class="row">
+        <div class="col-md-3 col-md-offset-1">
+            <%= image_tag current_user.gravatar_url, class:"" %>
             <h1><%= @user.username %></h1>
             <p><%= render 'shared/stats' %></p>
             <% if current_user.id != @user.id %>
@@ -19,8 +15,26 @@
               </div>
             <% end %>
         </div>
+        <div class="col-md-7">
+        <% @entries.each do |entry| %>
+            <div class="rows">
+                <div class="card" style="padding:40px">
+                    
+                    <%= link_to cl_video_tag( File.basename(URI.parse(entry.reel.to_s).path), :width=>550, :height=>400, :crop=>"scale",:loop => true, :autoplay => false, :poster => false,
+                                :fallback_content => "Your browser does not support HTML5 video tags"), entry %>
+                        <h2><%= entry.title %></h2>
+                        <p><strong>Tags:</strong> <%= entry.tag %></p>
+                </div>
+            </div>
+        <% end %>
+        
+        
+        </div>
     </div>
-</div> <!-- /container -->  
+</div>
+
+
+
 
 
 <div class="container">

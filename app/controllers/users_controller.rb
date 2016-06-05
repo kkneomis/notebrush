@@ -1,8 +1,10 @@
 class UsersController < ApplicationController
     def show
         @user = User.find(params[:id])
+        @entries = Entry.where(user_id: @user.id)
     end
     
+
     
     def following
         @title = "Following"

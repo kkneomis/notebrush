@@ -3,9 +3,12 @@ class PagesController < ApplicationController
       @entries = Entry.take(6)
   end
 
- def timeline
-      @feed_items = current_user.feed.paginate(page: params[:page])
-  end
+    def feed
+        @user = current_user
+        @following = @user.following
+        @followers = @user.followers
+        @entries =  current_user.feed
+    end
 
   def elements
   end
