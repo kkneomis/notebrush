@@ -4,11 +4,15 @@
 <div class="container">
     <div class="row">
         <div class="col-md-6 col-md-offset-3">
-            <%= cl_video_tag( File.basename(URI.parse(@entry.reel.to_s).path), :width=>600, :height=>400, :crop=>"scale",:loop => true, :autoplay => true, :poster => false,
+            
+            <%= cl_video_tag( File.basename(URI.parse(@entry.reel.to_s).path), :width=>550, :height=>400, :crop=>"scale",:loop => true, :autoplay => true, :poster => false,
                     :fallback_content => "Your browser does not support HTML5 video tags") %>
+             <p><%= rating_for @entry %></p>
             <h2><%= @entry.title %></h2>
             <p><strong>Description:</strong> <%= @entry.description %></p>
             <p><strong>Tags:</strong> <%= @entry.tag %></p>
+            
+            <%= render 'disqus' %>
             <div class="text-center">
                 <% if Entry.exists?(@entry.id + 1)%>
                    <a href="/entries/<%= @entry.id + 1%>" class="btn btn-primary pull-right">Next Video<i class="fa fa-arrow-right"></i></a>

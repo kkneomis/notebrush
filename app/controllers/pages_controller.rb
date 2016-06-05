@@ -3,7 +3,8 @@ class PagesController < ApplicationController
       @entries = Entry.take(6)
   end
 
-  def generic
+ def timeline
+      @feed_items = current_user.feed.paginate(page: params[:page])
   end
 
   def elements

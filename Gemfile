@@ -16,7 +16,7 @@ gem 'gravtastic'
 gem 'bootstrap-sass', '~> 3.3.4'
 gem 'carrierwave'
 gem 'cloudinary'
-
+gem 'ratyrate'
 
 group :production do
 

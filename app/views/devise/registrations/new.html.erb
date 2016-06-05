@@ -10,10 +10,14 @@
 			<h2>Sign Up</h2>
 
 			<%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
-                  <%= devise_error_messages! %>
+                 <p><%= devise_error_messages! %></p>
                 <div class="form-group">
-                    <label for="">Email</label>
-                    <%= f.email_field :email, class:"form-control", autofocus: true %>
+                    <label for="">Username</label>
+                    <%= f.text_field :username, class:"form-control", autofocus: true %>
+                  </div> 
+               <div class="form-group">
+                 <label for="">Email</label>
+                    <%= f.email_field :email, class:"form-control" %>
                   </div>
                 <div class="form-group">
                     <label for="">Password</label>

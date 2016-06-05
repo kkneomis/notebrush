@@ -14,4 +14,6 @@
 //= require jquery_ujs
 //= require cloudinary
 //= require turbolinks
+//= require jquery.raty
+//= require ratyrate
 //= require_tree .
