@@ -7,11 +7,31 @@
             
             <%= cl_video_tag( File.basename(URI.parse(@entry.reel.to_s).path), :width=>550, :height=>400, :crop=>"scale",:loop => true, :autoplay => true, :poster => false,
                     :fallback_content => "Your browser does not support HTML5 video tags") %>
-            <p> by <%= link_to @entry.user.username, @entry.user%> </p>
+            
             <h2><%= @entry.title %></h2>
-            <p><strong>Description:</strong> <%= @entry.description %></p>
+             <p><strong>Description:</strong> <%= @entry.description %></p>
             <p><strong>Tags:</strong> <%= @entry.tag %></p>
             
+            <div class="row"> 
+               <div class="col-md-6">
+                by <%= link_to @entry.user.username, @entry.user%> 
+               </div>   
+               <div class="col-md-6" style="text-align:right">
+                <% if user_signed_in? && (current_user.voted_for? @entry) %>
+                <%= link_to unlike_entry_path(@entry), method: :put do %>
+                            <i class='fa fa-heart'></i>
+                         <% end %>
+                     <% else %>
+                        <%= link_to like_entry_path(@entry), method: :put do %>
+                            <i class='fa fa-heart-o'></i>
+                        <% end %>
+                    <% end %>
+                    <%= @entry.votes_for.size%> like(s)
+               </div>   
+            </div>
+            
+            
+        
             <%= render 'disqus' %>
             <div class="text-center">
                 <% if Entry.exists?(@entry.id + 1)%>

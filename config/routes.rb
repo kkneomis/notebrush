@@ -13,7 +13,13 @@ Rails.application.routes.draw do
   get 'pages/forms'
 
     
-  
+  resources :entries do
+    member do
+        put "like", to: "entries#vote"
+        put "unlike", to: "entries#unvote"
+    end
+  end
+    
   resources :users do
     member do
       get :following, :followers

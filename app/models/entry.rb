@@ -2,10 +2,8 @@ class Entry < ActiveRecord::Base
   mount_uploader :reel, VideoUploader
 
   belongs_to :user
-    ratyrate_rateable 
+  ratyrate_rateable 
     
-    def next
-        entry.where(:id == self.id)
-    end
+  acts_as_votable
     
 end

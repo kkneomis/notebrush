@@ -1,5 +1,5 @@
 class EntriesController < ApplicationController
-  before_action :set_entry, only: [:show, :edit, :update, :destroy]
+    before_action :set_entry, only: [:show, :edit, :update, :destroy, :vote, :unvote]
   before_filter :authenticate_user!, only: [:new, :create, :edit, :update, :destroy]
 
   respond_to :html
@@ -36,6 +36,25 @@ class EntriesController < ApplicationController
   def destroy
     @entry.destroy
     respond_with(@entry)
+  end
+    
+  def vote
+    @entry.liked_by current_user
+    @entry.total_votes = @entry.votes_for.size
+    redirect_to :back
+    #activity= Activity.create(params[:activity])
+    #activity.actor_id = current_user.id
+    #activity.action = " liked a post from "
+    #activity.object_id= @style.id
+    #activity.receiver_id= @style.user.id
+    #activity.action_type="like"
+    #activity.save
+  end
+  
+  def unvote
+      @entry.unliked_by current_user
+      @entry.total_votes=@entry.votes_for.size
+      redirect_to @entry
   end
 
   private
