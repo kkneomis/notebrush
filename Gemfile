@@ -18,6 +18,7 @@ gem 'carrierwave'
 gem 'cloudinary'
 gem 'ratyrate'
 gem 'acts_as_votable', '~> 0.10.0'
+gem 'activeadmin', github: 'activeadmin'
 
 group :production do
 
