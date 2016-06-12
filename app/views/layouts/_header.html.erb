@@ -18,14 +18,15 @@
 								<a href="/entries" class="nav-link ">Browse</a>
 							</li>
 
-							<li class="nav-item has-submenu">
-								<a href="/feed" class="nav-link ">Feed</a>
-							</li>
+							
                             
                             <li class="nav-item has-submenu">
 								<a href="#" class="nav-link ">About Us</a>
 							</li>
                             <% if user_signed_in? %>
+                                <li class="nav-item has-submenu">
+								    <a href="/feed" class="nav-link ">Feed</a>
+							    </li>
                                 <li class="nav-item has-submenu">
                                     <%= link_to 'Add a video', new_entry_path, class:"nav-link" %>
                                 </li>

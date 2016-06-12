@@ -20,8 +20,12 @@
     <% if @page == 'home' %>  
         <%= render '/layouts/slider' %>
     <% end %>
-    <p class="notice"><%= notice %></p>                                                                                                           <p class="alert"><%= alert %></p> 
-    <%= yield %>
+     <% flash.each do |name, msg| %>
+    <%= content_tag :div, msg, :id => "flash#{name}" %>
+    <% end %>
+    <div class="large-padding">
+        <%= yield %>
+    </div>
 <%= render '/layouts/footer' %>
   
 </body>

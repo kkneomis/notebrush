@@ -1,4 +1,5 @@
 class PagesController < ApplicationController
+    before_filter :authenticate_user!, only: [:feed]
   def home
       @entries = Entry.take(6)
   end

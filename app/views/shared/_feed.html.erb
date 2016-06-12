@@ -1,3 +1,6 @@
+
+
+
 <div class="container">
     <div class="row">
         <div class="col-md-3 col-md-offset-1">
@@ -15,6 +18,11 @@
             <% end %>
         </div>
         <div class="col-md-7">
+            <% if @entries.empty? %>
+                <div class="dull">
+                    <h2>No posts available</h2>
+                </div>
+            <% end %>
         <% @entries.each do |entry| %>
             <div class="rows">
                 <div class="card" style="padding:40px">

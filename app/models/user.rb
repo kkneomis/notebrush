@@ -10,6 +10,8 @@ class User < ActiveRecord::Base
     
   ratyrate_rater
     
+    has_many :entries, dependent: :destroy
+    
   has_many :videos
     
   has_many :active_relationships,  class_name:  "Relationship",
