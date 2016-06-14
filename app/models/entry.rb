@@ -5,5 +5,6 @@ class Entry < ActiveRecord::Base
   ratyrate_rateable 
     
   acts_as_votable
+  acts_as_taggable
     
 end

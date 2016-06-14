@@ -19,6 +19,7 @@ Rails.application.routes.draw do
     member do
         put "like", to: "entries#vote"
         put "unlike", to: "entries#unvote"
+        put "repost", to: "entries#repost"
     end
   end
     
@@ -28,7 +29,7 @@ Rails.application.routes.draw do
     end
   end
 
-      resources :relationships,       only: [:create, :destroy]
+  resources :relationships,       only: [:create, :destroy]
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

@@ -10,8 +10,7 @@ class User < ActiveRecord::Base
     
   ratyrate_rater
     
-    has_many :entries, dependent: :destroy
-    
+  has_many :entries, dependent: :destroy  
   has_many :videos
     
   has_many :active_relationships,  class_name:  "Relationship",
@@ -22,8 +21,9 @@ class User < ActiveRecord::Base
                                    dependent:   :destroy
   has_many :following, through: :active_relationships,  source: :followed
   has_many :followers, through: :passive_relationships, source: :follower
-    
-  
+   
+
+
   # Follows a user.
   def follow(other_user)
     active_relationships.create(followed_id: other_user.id)
@@ -40,10 +40,19 @@ class User < ActiveRecord::Base
   end
   
   def feed
-    following_ids = "SELECT followed_id FROM relationships
+      
+      
+      following_ids = "SELECT followed_id FROM relationships
                      WHERE  follower_id = :user_id"
-    Entry.where("user_id IN (:following_ids) OR user_id = :user_id",
-                    following_ids: following_ids, user_id: id)
+      
+      repost_ids = "SELECT entry_id FROM reposts
+                    WHERE reposter_id IN (#{following_ids})"
+      
+      Entry.where("user_id IN (#{following_ids}) OR id IN (#{repost_ids})
+                     OR user_id = :user_id", user_id: id) 
+      
+      #Entry.where("user_id IN (:following_ids) OR user_id = :user_id OR id IN (:repost_ids)",
+       #           following_ids: following_ids, user_id: id, repost_ids: repost_ids)
   end
     
 end

@@ -1,11 +1,11 @@
 class EntriesController < ApplicationController
-    before_action :set_entry, only: [:show, :edit, :update, :destroy, :vote, :unvote]
+    before_action :set_entry, only: [:show, :edit, :update, :destroy, :vote, :unvote, :repost]
   before_filter :authenticate_user!, only: [:new, :create, :edit, :update, :destroy]
 
   respond_to :html
 
   def index
-    @entries = Entry.all
+    @entries = Entry.all.order(created_at: :desc)
     respond_with(@entries)
   end
 
@@ -24,11 +24,13 @@ class EntriesController < ApplicationController
   def create
     @entry = Entry.new(entry_params)
     @entry.user_id = current_user.id
+    @entry.tag_list.add(@entry.tag, parse: true)
     @entry.save
     respond_with(@entry)
   end
 
   def update
+    @entry.tag_list = @entry.tag_list.add(@entry.tag, parse: true)
     @entry.update(entry_params)
     respond_with(@entry)
   end
@@ -41,14 +43,7 @@ class EntriesController < ApplicationController
   def vote
     @entry.liked_by current_user
     @entry.total_votes = @entry.votes_for.size
-    redirect_to :back
-    #activity= Activity.create(params[:activity])
-    #activity.actor_id = current_user.id
-    #activity.action = " liked a post from "
-    #activity.object_id= @style.id
-    #activity.receiver_id= @style.user.id
-    #activity.action_type="like"
-    #activity.save
+    redirect_to @entry
   end
   
   def unvote
@@ -57,12 +52,17 @@ class EntriesController < ApplicationController
       redirect_to @entry
   end
 
+  def repost
+      @repost = Repost.new()
+      
+  end
+    
   private
     def set_entry
       @entry = Entry.find(params[:id])
     end
 
     def entry_params
-      params.require(:entry).permit(:title, :description, :user_id, :tag, :reel)
+      params.require(:entry).permit(:title, :description, :user_id, :tag, :reel, :tag_list)
     end
 end

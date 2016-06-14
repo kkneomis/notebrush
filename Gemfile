@@ -19,6 +19,7 @@ gem 'cloudinary'
 gem 'ratyrate'
 gem 'acts_as_votable', '~> 0.10.0'
 gem 'activeadmin', github: 'activeadmin'
+gem 'acts-as-taggable-on', '~> 3.4'
 
 group :production do
 
