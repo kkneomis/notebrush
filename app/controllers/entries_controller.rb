@@ -51,11 +51,6 @@ class EntriesController < ApplicationController
       @entry.total_votes=@entry.votes_for.size
       redirect_to @entry
   end
-
-  def repost
-      @repost = Repost.new()
-      
-  end
     
   private
     def set_entry

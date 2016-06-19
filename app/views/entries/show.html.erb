@@ -44,11 +44,11 @@
             
             <%= render 'disqus' %>
             <div class="text-center">
-                <% if Entry.exists?(@entry.id + 1)%>
-                   <a href="/entries/<%= @entry.id + 1%>" class="btn btn-primary pull-right btn3d">Next Video<i class="fa fa-arrow-right"></i></a>
+                <% if !(@entry.next.nil?) %>
+                <a href="/entries/<%= @entry.next.id %>" class="btn btn-primary pull-right btn3d">Next Video<i class="fa fa-arrow-right"></i></a>
                 <% end %>
-                <% if Entry.exists?(@entry.id - 1)%>
-                    <a href="/entries/<%= @entry.id - 1%>" class="btn btn-primary pull-left btn3d"><i class="fa fa-arrow-left"></i> Previous</a>
+                <% if !(@entry.previous.nil?) %>
+                <a href="/entries/<%= @entry.previous.id %>" class="btn btn-primary pull-left btn3d"><i class="fa fa-arrow-left"></i> Previous</a>
                 <% end %>
             </div>
         </div>

@@ -8,7 +8,7 @@ Rails.application.routes.draw do
     
   root 'pages#home'
 
-    get 'feed' => 'pages#feed'
+  get 'feed' => 'pages#feed'
 
   get 'pages/elements'
 
@@ -30,6 +30,12 @@ Rails.application.routes.draw do
   end
 
   resources :relationships,       only: [:create, :destroy]
+    resources :reposts do
+        member do
+            put "share", to: "repost#share"
+            put "unshare", to: "repost#unshare"
+        end
+    end 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
