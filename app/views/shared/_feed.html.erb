@@ -26,18 +26,18 @@
         <% @entries.each do |entry| %>
             <div class="rows">
                 <div class="card" style="padding:40px">
-                    <%= entry.count %>
+                    <% @repost_count = Repost.where(entry_id: entry.id, reposter_id: current_user.id).size %>
                     <%= link_to (image_tag entry.reel.to_s.gsub('.mp4', '.jpg'), class:"card-image", width:"100%"), entry%>
-                     <h2><%= entry.title %>
-                         <% if entry.count == false %>
-                         <%= link_to share_repost_path(entry), class:"btn btn-dfault btn3d pull-right", method: :put do%>
-                            <i class='fa fa-retweet'></i>
+                    <h2><% entry.title %></h2>
+                         <% if @repost_count == 0  %>
+                             <%= link_to share_repost_path(entry), class:"btn btn-dfault btn3d pull-right", method: :put do%>
+                                <i class='fa fa-retweet'></i>
+                            <% end %>
+                        <% else %>
+                             <%= link_to unshare_repost_path(entry), class:"btn btn-primary pull-right", method: :put do%>
+                                <i class='fa fa-retweet'></i>
+                            <% end %>
                         <% end %>
-                    <% else %>
-                         <%= link_to unshare_repost_path(entry), class:"btn btn-primary pull-right", method: :put do%>
-                            <i class='fa fa-retweet'></i>
-                        <% end %>
-                    <% end %>
                     </h2>   
                     <h4><%= image_tag entry.user.gravatar_url,  height:"30" %>  <%= link_to entry.user.username, entry.user %></h4>
                         <p><strong>Tags:</strong> 
