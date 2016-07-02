@@ -28,11 +28,11 @@ class Entry < ActiveRecord::Base
     
     
   def next
-    self.class.where("id > ?", id).first
+      self.class.where(:album_id => album_id).where("id > ?", id).first
   end
 
   def previous
-    self.class.where("id < ?", id).last
+    self.class.where(:album_id => album_id).where("id < ?", id).last
   end
     
 end

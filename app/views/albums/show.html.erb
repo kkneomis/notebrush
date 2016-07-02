@@ -1,0 +1,28 @@
+
+<% @entries = Entry.where(album_id: @album.id) %>
+
+<div class="container">
+    <div class="row">
+      <div class="col-md-6"> 
+        <div class="card" style="padding:40px">
+            <%= cl_image_tag(@album.cover, :width =>"200", :crop=>"scale") %>
+            <h2><%= @album.name %>
+            <% if (current_user == @album.user) %>
+               <%= link_to 'Delete ', @album, method: :delete, data: { confirm: 'Are you sure?' } , class:"btn btn-danger btn-sm pull-right btn3d" %>
+                <%= link_to 'Edit', edit_album_path(@album), class:"btn btn-success btn-sm pull-right btn3d" %>  
+             <% end %>
+            </h2>
+            <p><strong>by: <%= link_to @album.user.username, @album.user%> </strong></p>
+            
+        </div>
+       </div>
+       <div class="col-md-6"> 
+          <h4>Videos in this Album</h4>
+        <div class="list-group">
+            <% @entries.each do |entry| %>
+                <%= link_to entry.title, entry, class:"list-group-item" %>
+            <% end %>
+        </div>  
+    </div>       
+    </div>
+</div>

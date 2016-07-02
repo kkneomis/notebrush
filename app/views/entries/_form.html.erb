@@ -35,6 +35,10 @@
 					<label>Video Upload</label>
                     <%= f.file_field :reel, class:"form-control"%>
 				</div><!-- /.form-group -->
+                <div class="form-group">
+					<label>Album</label>
+                    <%= f.select :album_id, options_for_select(Album.where(user: current_user).all.map{|al| [al.name, al.id]} , selected=@entry.album_id.to_s), class:"form-control" %>
+				</div><!-- /.form-group -->
                 <div class="center">
                     <%= f.submit "Submit Video", class:"btn btn-primary btn-large btn3d" %>
 			      </div><!-- /.center -->

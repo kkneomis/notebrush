@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160614011429) do
+ActiveRecord::Schema.define(version: 20160625013411) do
 
   create_table "active_admin_comments", force: :cascade do |t|
     t.string   "namespace"
@@ -46,6 +46,14 @@ ActiveRecord::Schema.define(version: 20160614011429) do
   add_index "admin_users", ["email"], name: "index_admin_users_on_email", unique: true
   add_index "admin_users", ["reset_password_token"], name: "index_admin_users_on_reset_password_token", unique: true
 
+  create_table "albums", force: :cascade do |t|
+    t.string   "name"
+    t.string   "cover"
+    t.integer  "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "average_caches", force: :cascade do |t|
     t.integer  "rater_id"
     t.integer  "rateable_id"
@@ -64,6 +72,8 @@ ActiveRecord::Schema.define(version: 20160614011429) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "total_votes"
+    t.integer  "alum_id"
+    t.integer  "album_id"
   end
 
   add_index "entries", ["user_id"], name: "index_entries_on_user_id"

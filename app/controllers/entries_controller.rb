@@ -58,6 +58,6 @@ class EntriesController < ApplicationController
     end
 
     def entry_params
-      params.require(:entry).permit(:title, :description, :user_id, :tag, :reel, :tag_list)
+      params.require(:entry).permit(:title, :description, :user_id, :tag, :reel, :tag_list, :album_id, :total_votes)
     end
 end

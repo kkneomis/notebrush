@@ -22,7 +22,9 @@
                     <span class="badge"><%= tag %></span>
                 <% end %>
             </p>
-            
+            <% if @entry.album_id != nil %>
+                <p><strong>Album:</strong> <%= link_to Album.find(@entry.album_id).name, Album.find(@entry.album_id)%></p>
+            <% end %>
             <div class="row"> 
                <div class="col-md-6">
                 by <%= link_to @entry.user.username, @entry.user%> 
@@ -32,7 +34,7 @@
                 <%= link_to unlike_entry_path(@entry), method: :put do %>
                             <i class='fa fa-heart'></i>
                          <% end %>
-                     <% else %>
+                <% else %>
                         <%= link_to like_entry_path(@entry), method: :put do %>
                             <i class='fa fa-heart-o'></i>
                         <% end %>

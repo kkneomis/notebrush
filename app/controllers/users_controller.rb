@@ -1,7 +1,8 @@
 class UsersController < ApplicationController
     def show
         @user = User.find(params[:id])
-        @entries = Entry.where(user_id: @user.id)
+        @entries =  current_user.feed.order(created_at: :desc)
+        @albums = Album.where(user_id: @user.id)
     end
     
 

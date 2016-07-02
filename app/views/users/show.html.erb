@@ -1,7 +1,14 @@
 
+
+
 <div class="container">
+    
+ 
+    
+    
     <div class="row">
-        <div class="col-md-3 col-md-offset-1">
+        <div class="col-md-12">
+          <div class="card center" style="padding:40px">
             <%= image_tag current_user.gravatar_url, class:"" %>
             <h1><%= @user.username %></h1>
             <p><%= render 'shared/stats' %></p>
@@ -14,21 +21,41 @@
               <% end %>
               </div>
             <% end %>
+           </div>
         </div>
-        <div class="col-md-5">
-        <% @entries.each do |entry| %>
-            <div class="rows">
-                <div class="card" style="padding:40px">
-                    
-                    <%= link_to (image_tag entry.reel.to_s.gsub('.mp4', '.jpg'), class:"card-image", width:"100%"), entry%>
-                        <h2><%= entry.title %></h2>
-                        <p><strong>Tags:</strong> <%= entry.tag %></p>
-                </div>
+        <h1>Albums</h1><br>
+        <% @albums.each_slice(3) do |album_group| %>
+            <div class="row">  
+                <% album_group.each do |album| %>
+                    <div class="col-md-4">
+                        <div class="papers" style="padding:40px">
+                            <%= link_to cl_image_tag(album.cover, width:"100%"), album %>
+                            <h3><%= album.name %></h3>
+                        </div>
+                    </div>
+                <% end %>
             </div>
+        <br>
         <% end %>
-        
-        
-        </div>
+        <h1>Videos</h1><br>
+        <% @entries.each_slice(3) do |entry_group| %>
+            <div class="row">  
+                <% entry_group.each do |entry| %>
+                    <div class="col-md-4">
+                        <div class="card" style="padding:40px">
+                            <%= link_to (image_tag entry.reel.to_s.gsub('.mp4', '.jpg'), class:"card-image", width:"100%"), entry%>
+                            <h3><%= entry.title %></h3>
+                            <p><strong>Tags:</strong> 
+                            <% entry.tag_list.each do |tag|%>
+                                <span class="badge"><%= tag %></span>
+                            <% end %>
+                        </p>
+                        </div>
+                    </div>
+                <% end %>
+            </div>
+        <br>
+        <% end %>
     </div>
 </div>
 
