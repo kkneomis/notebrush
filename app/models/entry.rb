@@ -37,9 +37,7 @@ class Entry < ActiveRecord::Base
     
 
   def self.search(search)
-   where("description LIKE ?", "%#{search}%") and
-   where("tag LIKE ?", "%#{search}%") and
-   where("title LIKE ?", "%#{search}%")
+   where("(title LIKE ?) OR (tag LIKE ?) OR (description LIKE ?)", "%#{search}%", "%#{search}%", "%#{search}%") 
   end
     
 end
