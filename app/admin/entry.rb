@@ -19,6 +19,7 @@ index do
   column :title
   column ('User') { |b| b.user.username }
   column ('Votes') { |b| b.votes_for.size }
+  column ('Reported') { |b| b.report_flag }
   actions
 end
 

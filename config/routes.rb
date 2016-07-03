@@ -21,6 +21,7 @@ Rails.application.routes.draw do
         put "like", to: "entries#vote"
         put "unlike", to: "entries#unvote"
         put "repost", to: "entries#repost"
+        put "report", to: "entries#report"
     end
   end
     

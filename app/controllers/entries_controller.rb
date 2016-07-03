@@ -1,5 +1,5 @@
 class EntriesController < ApplicationController
-    before_action :set_entry, only: [:show, :edit, :update, :destroy, :vote, :unvote, :repost]
+    before_action :set_entry, only: [:show, :edit, :update, :destroy, :vote, :unvote, :repost, :report]
   before_filter :authenticate_user!, only: [:new, :create, :edit, :update, :destroy]
 
   respond_to :html
@@ -54,6 +54,12 @@ class EntriesController < ApplicationController
       @entry.unliked_by current_user
       @entry.total_votes=@entry.votes_for.size
       redirect_to @entry
+  end
+    
+ def report
+     flash.alert = "Thank you for flagging this video. We will review it and take appropriate actions."
+      @entry.update_attributes(:report_flag => true)
+      respond_with(@entry)
   end
     
   private

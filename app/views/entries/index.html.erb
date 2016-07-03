@@ -36,8 +36,21 @@
                         </div><!-- /.card-content -->
 
                         <div class="card-actions">
-                            <a href="#" class="card-action-icon"><i class="md-icon">favorite</i></a>
-                            <a href="#" class="card-action-icon"><i class="md-icon">flag</i></a>
+                            <% if user_signed_in? && (current_user.voted_for? entry) %>
+                                <%= link_to unlike_entry_path(entry), method: :put do %>
+                                    <i class='fa fa-heart'></i>
+                                <% end %>
+                            <% else %>
+                                <%= link_to like_entry_path(entry), method: :put do %>
+                                    <i class='fa fa-heart-o'></i>
+                                <% end %>
+                            <% end %>
+                            <%= entry.votes_for.size%> like(s)
+                            <% if user_signed_in? %>
+                                <%= link_to report_entry_path(entry), method: :put do %>
+                                    <i class='fa fa-flag'></i>
+                                <% end %>
+                            <% end %>
                             <%= link_to "Watch Video", entry, class:"card-action-btn btn btn-transparent btn3d" %>
                         </div><!-- /.card-actions -->
                     </div><!-- /.card -->

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160625013411) do
+ActiveRecord::Schema.define(version: 20160703011755) do
 
   create_table "active_admin_comments", force: :cascade do |t|
     t.string   "namespace"
@@ -74,6 +74,7 @@ ActiveRecord::Schema.define(version: 20160625013411) do
     t.integer  "total_votes"
     t.integer  "alum_id"
     t.integer  "album_id"
+    t.boolean  "report_flag"
   end
 
   add_index "entries", ["user_id"], name: "index_entries_on_user_id"

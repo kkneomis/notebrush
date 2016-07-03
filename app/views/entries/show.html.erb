@@ -9,6 +9,7 @@
                     :fallback_content => "Your browser does not support HTML5 video tags") %>
             
             <h2><%= @entry.title %>
+            
             <% if (current_user == @entry.user) %>
                <%= link_to 'Delete ', @entry, method: :delete, data: { confirm: 'Are you sure?' } , class:"btn btn-danger btn-sm pull-right btn3d" %>
                 <%= link_to 'Edit', edit_entry_path(@entry), class:"btn btn-success btn-sm pull-right btn3d" %>  
@@ -30,21 +31,30 @@
                 by <%= link_to @entry.user.username, @entry.user%> 
                </div>   
                <div class="col-md-6" style="text-align:right">
+                <!-------------like and dislike----------->
                 <% if user_signed_in? && (current_user.voted_for? @entry) %>
-                <%= link_to unlike_entry_path(@entry), method: :put do %>
-                            <i class='fa fa-heart'></i>
-                         <% end %>
-                <% else %>
+                    <%= link_to unlike_entry_path(@entry), method: :put do %>
+                        <i class='fa fa-heart'></i>
+                        <% end %>
+                    <% else %>
                         <%= link_to like_entry_path(@entry), method: :put do %>
                             <i class='fa fa-heart-o'></i>
                         <% end %>
                     <% end %>
                     <%= @entry.votes_for.size%> like(s)
+                   <!-------------report flag------------>
+                            <% if user_signed_in? %>
+                                <%= link_to report_entry_path(@entry), method: :put do %>
+                                    <i class='fa fa-flag'></i>
+                                <% end %>
+                            <% end %>
                </div>   
             </div>
             
-            
+            <!-------------comments----------->
             <%= render 'disqus' %>
+            
+            <!-------------find previous or next video in album----------->
             <div class="text-center">
                 <% if !(@entry.next.nil?) %>
                 <a href="/entries/<%= @entry.next.id %>" class="btn btn-primary pull-right btn3d">Next Video<i class="fa fa-arrow-right"></i></a>
