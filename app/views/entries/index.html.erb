@@ -7,7 +7,22 @@
 		<h2>Showing All Videos</h2>
 	</div><!-- /.page-title -->
 
-
+    <%= form_tag(entries_path, :method => "get", id: "search-form") do %>
+        <div class="input-group">
+            <%= text_field_tag :search, params[:search], placeholder: "Search Videos by title, description, or tags", class:"form-control"%>
+            <div class="input-group-btn">
+                <%= submit_tag "Search", class:"btn btn-primary"%>
+            </div>
+        </div>
+    <% end %>
+    
+    <% if @posts.present? %>
+      <%= render @posts %>
+    <% elsif  !(params[:search].nil?) and !(params[:search] == "")  %>
+      <h2 style="color:grey">There are no posts containing the term(s) <%= params[:search] %>.</h2>
+    <% end %>
+    
+    <br>
 	<div class="row">
 		<div class="col-sm-12 col-xl-10">
 			<div class="cards-wrapper">

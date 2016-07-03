@@ -6,7 +6,11 @@ class EntriesController < ApplicationController
 
   def index
     @entries = Entry.all.order(created_at: :desc)
-    respond_with(@entries)
+    if params[:search]
+        @entries = Entry.search(params[:search]).order("created_at DESC")
+    else
+        @entries = Entry.all.order('created_at DESC')
+    end
   end
 
   def show

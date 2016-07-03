@@ -35,4 +35,11 @@ class Entry < ActiveRecord::Base
     self.class.where(:album_id => album_id).where("id < ?", id).last
   end
     
+
+  def self.search(search)
+   where("description LIKE ?", "%#{search}%") and
+   where("tag LIKE ?", "%#{search}%") and
+   where("title LIKE ?", "%#{search}%")
+  end
+    
 end
