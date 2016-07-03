@@ -16,8 +16,7 @@
         </div>
     <% end %>
     
-    <% if @posts.present? %>
-      <%= render @posts %>
+    <% if @entries.present? %>  
     <% elsif  !(params[:search].nil?) and !(params[:search] == "")  %>
       <h2 style="color:grey">There are no posts containing the term(s) <%= params[:search] %>.</h2>
     <% end %>
